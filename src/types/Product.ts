@@ -2,5 +2,7 @@ export type Product = {
   id: number;
   name: string;
   price: string;
-  orderId: string;
+  orderId: number;
 };
+
+export type ProductWithOutOrder = Omit<Product, 'orderId'>;
