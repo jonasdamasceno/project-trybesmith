@@ -1,19 +1,22 @@
-// import { Optional } from 'sequelize';
 import { ServiceResponse } from '../types/ServiceResponse';
-import ProductModel, { ProductInputtableTypes } from '../database/models/product.model';
-// import { Product } from '../types/Product';
+import ProductModel, { 
+  ProductInputtableTypes, 
+  ProductSequelizeModel, 
+} from '../database/models/product.model';
+import { ProductWithOutOrder } from '../types/Product';
 
-type ProductWithOrder = {
-  id: number,
-  price: string,
-  name: string
-};
 const createProductWithOrder = async (product: 
-ProductInputtableTypes): Promise<ServiceResponse<ProductWithOrder>> => {
+ProductInputtableTypes): Promise<ServiceResponse<ProductWithOutOrder>> => {
   const { dataValues: { id, name, price } } = await ProductModel.create(product);
-  return { status: 'SUCCESFUL', data: { id, name, price } };
+  return { status: 'CREATED', data: { id, name, price } };
+};
+
+const getAllProducts = async (): Promise<ServiceResponse<ProductSequelizeModel[]>> => {
+  const servicerResponse = await ProductModel.findAll();
+  return { status: 'SUCCESFUL', data: servicerResponse };
 };
 
 export default {
   createProductWithOrder,
+  getAllProducts,
 };

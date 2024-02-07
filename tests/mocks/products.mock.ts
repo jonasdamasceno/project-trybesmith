@@ -1,3 +1,4 @@
+import ProductModel from "../../src/database/models/product.model";
 import { Product } from "../../src/types/Product";
 
 const ProductSuccesDB: Product = {
@@ -14,7 +15,19 @@ const ProductSuccesCreated = {
   orderId: 4,
 };
 
+const allProductsMock = [
+  ProductModel.build( 
+  {
+    "id": 1,
+    "name": "Excalibur",
+    "price": "10 peças de ouro",
+    "orderId": 1
+  },
+  )
+]
+
 export default {
   ProductSuccesDB,
-  ProductSuccesCreated
+  ProductSuccesCreated,
+  allProductsMock
 }
