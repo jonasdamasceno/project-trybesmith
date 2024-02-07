@@ -10,9 +10,9 @@ const createProductHandler = async (req: Request, res: Response): Promise<void> 
 };
 
 const getAllProductsController = async (req: Request, res: Response): Promise<void> => {
-  const serviceResponse = await productsService.getAllProducts();
-  const responseData = serviceResponse.data;
-  const responseStatus = serviceResponse.status;
+  const serviceListResponse = await productsService.getAllProducts();
+  const responseData = serviceListResponse.data;
+  const responseStatus = serviceListResponse.status;
   res.status(mapStatusHTTP(responseStatus)).json(responseData);
 };
 
